@@ -120,6 +120,7 @@
     this.ytid = id;
     this.uid = uid;
     this.player = null;
+    this.controls_element = HTMLElement;
     this.buttons = {};
 
     this.state = {};
@@ -163,6 +164,19 @@
       this.buildHTML();
       this.injectPlayer();
 
+      // set play/mute controls wrap
+      if (this.params['play-button'] || this.params['mute-button']) {
+        const controls = document.createElement('div');
+        controls.className = 'video-background-controls';
+
+        controls.style.position = 'absolute';
+        controls.style.top = '10px';
+        controls.style.right = '10px';
+        controls.style['z-index'] = 2;
+
+        this.controls_element = controls;
+        this.element.appendChild(controls);
+      }
 
       if (this.params['play-button']) {
         this.generateActionButton({
@@ -360,20 +374,6 @@
 
     if (this.is_mobile && !this.params.mobile) {
       return this.element;
-    }
-
-    // set play/mute controls wrap
-    if (this.params['play-button'] || this.params['mute-button']) {
-      const controls = document.createElement('div');
-      controls.className = 'video-background-controls';
-
-      controls.style.position = 'absolute';
-      controls.style.top = '10px';
-      controls.style.right = '10px';
-      controls.style['z-index'] = 2;
-
-      this.controls_element = controls;
-      parent.appendChild(controls);
     }
 
     return this.element;
