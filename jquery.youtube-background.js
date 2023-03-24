@@ -779,6 +779,7 @@
     this.player.loop = this.params.loop;
     this.player.playsinline = true;
 
+    this.player.setAttribute('playsinline', '');
     this.player.setAttribute('id', this.uid);
 
     if (this.params['inline-styles']) {

@@ -120,7 +120,8 @@ VideoBackground.prototype.injectPlayer = function () {
   this.player.loop = this.params.loop;
   this.player.playsinline = true;
 
-  this.player.setAttribute('id', this.uid)
+  this.player.setAttribute('playsinline', '');
+  this.player.setAttribute('id', this.uid);
 
   if (this.params['inline-styles']) {
     this.player.style.top = '50%';
